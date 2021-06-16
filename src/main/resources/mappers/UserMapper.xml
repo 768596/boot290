@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.model.mapper.UserMapper">
+    <!-- 一般情况下只查询基础用户信息.可以作为基础父映射组 -->
+    <resultMap id="BaseResultMap" type="User">
+        <id column="uid" property="uid"/>
+        <result column="name" property="name"/>
+        <result column="phone" property="phone"/>
+        <result column="enabled" property="enabled"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="remark" property="remark"/>
+    </resultMap>
+
+    <sql id="column">
+        uid, name, phone, enabled, username, password, remark
+    </sql>
+
+    <select id="loadUserByUsername" resultMap="BaseResultMap">
+        select <include refid="column"></include> from user WHERE username=#{username};
+    </select>
+</mapper>

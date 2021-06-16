@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.model.mapper.OrderDetailMapper">
+    <!--List<Ordetails> selectByOid(Integer oid);-->
+    <resultMap id="base" type="Ordetails">
+        <id column="odid" property="odid"/>
+        <id column="num" property="num"/>
+        <id column="g_price" property="gPrice"/>
+    </resultMap>
+    <sql id="column">
+        odid, oid, pid, num, g_price
+    </sql>
+    <select id="selectByOid" resultMap="base">
+        select <include refid="column"></include> from ordetails where oid=#{oid}
+    </select>
+</mapper>
